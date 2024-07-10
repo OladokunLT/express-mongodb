@@ -2,22 +2,25 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "fullName": "Peter Kode",
+    "fullName": "Eluku kane",
     "email": "peter@code.com",
     "password": "pet123"
 }
 
 ###
-PATCH  http://localhost:3000/user/66887f933cba576c35c1684b
+
+PUT     http://localhost:3000/users/user/668eb7cd8e86e265f0b0a540
 Content-Type: application/json
 
 {
-    "userPassword": "Doe325"
+    "email": "kane@kane.com",
+    "password": "elu123"
 }
+
 
 ###
 
-GET http://localhost:3000/user/66888a8655bd5d1a43dd050b
+GET http://localhost:3000/users/user/668eb7cd8e86e265f0b0a540
 
 ### 
 
@@ -25,4 +28,5 @@ GET http://localhost:3000/users
 
 ###
 
-DELETE http://localhost:3000/user/668876b558ad2b94902b2873
+DELETE http://localhost:3000/users/user/66887f933cba576c35c1684b
+
