@@ -1,23 +1,22 @@
 const express = require("express");
+require("dotenv").config();
 const logger = require("morgan");
 const uid = require("uuid");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const userRoute = require("./routes/routes");
-
+// const bcrypt = require("bcrypt");
+const userRoute = require("./routes/userRoutes");
 const server = express();
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(logger("dev"));
 
-const connection = mongoose.connect("mongodb://localhost:27017/kc-stage4");
+const connection = mongoose.connect(process.env.MONGODB_DB);
 connection
-  .then(() => console.log("connection successful to mongodg database"))
+  .then(() => console.log("connection successful to mongoDB database"))
   .catch((error) =>
     console.log("Error occur while trying to connect. Error ", error)
   );
-
 // user schema used for validation--------------------------
 // moved to models/users.js
 /*
@@ -88,4 +87,4 @@ server.post("/register", async (req, res) => {
 
 server.use("/users", userRoute);
 
-server.listen(3000, () => console.log("server is up"));
+server.listen(process.env.PORT, () => console.log("server is up"));

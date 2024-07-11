@@ -10,9 +10,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isEmailVerified: {
+      type: Boolean,
+      required: false,
+    },
     password: {
       type: String,
       required: true,
+    },
+    authToken: {
+      type: String,
+    },
+    authPurpose: {
+      type: String,
     },
   },
   { timestamps: true }

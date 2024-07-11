@@ -2,12 +2,23 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "fullName": "Eluku kane",
-    "email": "peter@code.com",
-    "password": "pet123"
+    "fullName": "Luku Pay",
+    "email": "lukupay@gmail.com",
+    "password": "lukupay"
 }
 
 ###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email": "kane@kane.co",
+    "password": "elu123"
+}
+
+###
+
 
 PUT     http://localhost:3000/users/user/668eb7cd8e86e265f0b0a540
 Content-Type: application/json
