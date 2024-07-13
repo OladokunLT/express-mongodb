@@ -2,10 +2,13 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "fullName": "Luku Pay",
-    "email": "lukupay@gmail.com",
-    "password": "lukupay"
+    "fullName": "Habeeb",
+    "email": "lukman.oladokun2@gmail.com",
+    "password": "lukman3"
 }
+
+###
+GET http://localhost:3000/users/auth/verify-email/38c2f9c7-c2d6-41b1-80fb-8d90384665a2
 
 ###
 
@@ -13,8 +16,8 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "email": "kane@kane.co",
-    "password": "elu123"
+    "email": "lukman.oladokun2@gmail.com",
+    "password": "lukman3"
 }
 
 ###
@@ -31,7 +34,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/users/user/668eb7cd8e86e265f0b0a540
+GET http://localhost:3000/users/user/ec919d25-4284-4168-a76f-d905bae51423
 
 ### 
 

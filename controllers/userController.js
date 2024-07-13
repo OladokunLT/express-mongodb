@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const { userCollection } = require("../models/users");
 const { v4 } = require("uuid");
 const { sendEmail } = require("../utils/emailerUtil");
+const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -22,7 +23,7 @@ const register = async (req, res) => {
     "verify email",
     "Hello " +
       fullName +
-      ", Use this link to verify your email http://localhost/3000/users/auth/verify-email/" +
+      ", Use this link to verify your email http://localhost:3000/users/auth/verify-email/" +
       token
   );
 
@@ -78,10 +79,13 @@ const login = async (req, res) => {
   }
 
   // Encrypting the userID and userEmail using jwt
-  const userToken = jwt.sign({
-    userId: user._id,
-    email: user.email,
-  });
+  const userToken = jwt.sign(
+    {
+      userId: user._id,
+      email: user.email,
+    },
+    "abcdefgh"
+  );
 
   res.status(201).send({
     isSuccessful: true,
