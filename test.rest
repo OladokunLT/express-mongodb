@@ -12,15 +12,12 @@ GET http://localhost:3000/users/auth/verify-email/49ed1978-fba8-481b-9bd3-666540
 
 ###
 
-# lukman's token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk0M2RkYzcyYTczMjU1YjAwOTJlZTIiLCJlbWFpbCI6Imx1a21hbi5vbGFkb2t1bjJAZ21haWwuY29tIiwiaWF0IjoxNzIwOTkxNjM4fQ.wdGWhg8oNIEe3dnn6SGNEV8t89RjBFR3m4CGJ8LxjUk
-# lukupay's token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk0NDEzMjcyYTczMjU1YjAwOTJlZWIiLCJlbWFpbCI6Imx1a3VwYXlAZ21haWwuY29tIiwiaWF0IjoxNzIwOTkzMTQ0fQ.qfiQVcpBZx5wK0ueNJgmM3SieBzEcCT0Tq6mi5uUEMU
-
 POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "email": "lukupay@gmail.com",
-    "password": "lukupay"
+    "email": "eruditerai@gmail.com",
+    "password": "erudite"
 }
 
 ###

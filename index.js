@@ -5,6 +5,7 @@ const uid = require("uuid");
 const mongoose = require("mongoose");
 // const bcrypt = require("bcrypt");
 const userRoute = require("./routes/userRoutes");
+// const userProfileRouter = require("./routes/userProfileRouter");
 const server = express();
 
 server.use(express.json());
@@ -86,5 +87,7 @@ server.post("/register", async (req, res) => {
 //
 
 server.use("/users", userRoute);
+
+// server.use("/users", userProfileRouter);
 
 server.listen(process.env.PORT, () => console.log("server is up"));

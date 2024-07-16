@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    // loggedInUser: {
+    //   type: mongoose.Types.ObjectId,
+    //   ref: "users",
+    // },
     email: {
       type: String,
       required: true,

@@ -4,6 +4,31 @@ const { v4 } = require("uuid");
 const { sendEmail } = require("../utils/emailerUtil");
 const jwt = require("jsonwebtoken");
 
+// function checkedIfLoggedIn(req, res, next) {
+//   const authToken = req.headers.authorization.split(" ");
+//   const strategy = authToken[0];
+//   const tokenItself = authToken[1];
+
+//   if (!authToken) {
+//     res.status(403).send({
+//       isSuccefull: false,
+//       message: "No token present",
+//     });
+//     return;
+//   }
+
+//   if (strategy == "Bearer") {
+//     const profileDetails = jwt.verify(tokenItself, process.env.AUTH_KEY);
+//     req.profileDetails = profileDetails;
+//     next();
+//   } else {
+//     res.status(403).send({
+//       isSuccefull: false,
+//       message: "invalid auth strategy",
+//     });
+//   }
+// }
+
 const register = async (req, res) => {
   const { fullName, email, password } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 10);
@@ -63,9 +88,9 @@ const verifyEmail = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await userCollection.findOne({ email });
-  console.log("value of user is: ", user);
+  // console.log("value of user is: ", user);
   if (!user) {
-    res.status(404).send({
+    res.status(400).send({
       isSuccessful: false,
       message: "Not found",
     });
@@ -138,7 +163,6 @@ const forgotPassword = async (req, res) => {
 const resetPassword = async (req, res) => {
   const { password, passwordResetToken } = req.body;
   const hashedPassword = bcrypt.hashSync(password, 10);
-  // "password": "$2b$10$UP/Upfe/pZk6tGXPPC4xuuyxF0qWcHNf3eIjh6ipPcBOwgdTAG3Oe"
 
   const doTokenExist = await userCollection.exists({ passwordResetToken });
   if (!doTokenExist) {
@@ -159,6 +183,13 @@ const resetPassword = async (req, res) => {
     message: "Password reset successful",
   });
 };
+
+// const userProfile = async (req, res) => {
+//   const users = await userCollection.find({
+//     loggedInUser: req.profileDetails.userId,
+//   });
+//   res.send(users);
+// };
 
 // Get All Users
 const getAllUsers = async (req, res) => {
@@ -194,6 +225,7 @@ module.exports = {
   login,
   forgotPassword,
   resetPassword,
+  // checkedIfLoggedIn,
   getAllUsers,
   getSingleUser,
   updateUser,
