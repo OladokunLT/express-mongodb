@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema(
     authPurpose: {
       type: String,
     },
+    passwordResetToken: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

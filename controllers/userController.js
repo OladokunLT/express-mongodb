@@ -30,6 +30,7 @@ const register = async (req, res) => {
   res.status(201).send({
     isSuccessful: true,
     message: "Kindly check your email to verify it",
+    token,
   });
 };
 
@@ -84,7 +85,7 @@ const login = async (req, res) => {
       userId: user._id,
       email: user.email,
     },
-    "abcdefgh"
+    process.env.AUTH_KEY
   );
 
   res.status(201).send({
@@ -98,6 +99,68 @@ const login = async (req, res) => {
   });
 };
 
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  console.log(email);
+  const doesEmailExist = await userCollection.exists({ email });
+
+  if (!doesEmailExist) {
+    res.status(400).send({
+      isSuccefull: false,
+      message: "Email is not in our database",
+    });
+    return;
+  }
+
+  const userToken = v4();
+  const user = await userCollection.findOne({ email });
+  const uniqueId = jwt.sign(
+    {
+      userId: user._id,
+      userToken,
+    },
+    process.env.AUTH_KEY
+  );
+
+  // storing password reset token
+  await userCollection.findOneAndUpdate(
+    { email },
+    { passwordResetToken: uniqueId }
+  );
+
+  res.status(201).send({
+    isSuccessful: true,
+    uniqueId,
+    message: "Use the uniqueID to reset your password",
+  });
+};
+
+const resetPassword = async (req, res) => {
+  const { password, passwordResetToken } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  // "password": "$2b$10$UP/Upfe/pZk6tGXPPC4xuuyxF0qWcHNf3eIjh6ipPcBOwgdTAG3Oe"
+
+  const doTokenExist = await userCollection.exists({ passwordResetToken });
+  if (!doTokenExist) {
+    res.send({
+      isSuccefull: false,
+      message: "Token incorrect",
+    });
+    return;
+  }
+
+  await userCollection.findOneAndUpdate(
+    { passwordResetToken },
+    { password: hashedPassword, passwordResetToken: "" }
+  );
+
+  res.status(201).send({
+    isSuccefull: true,
+    message: "Password reset successful",
+  });
+};
+
+// Get All Users
 const getAllUsers = async (req, res) => {
   res.send(await userCollection.find({}));
 };
@@ -129,6 +192,8 @@ module.exports = {
   register,
   verifyEmail,
   login,
+  forgotPassword,
+  resetPassword,
   getAllUsers,
   getSingleUser,
   updateUser,

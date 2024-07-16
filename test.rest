@@ -2,22 +2,43 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "fullName": "Habeeb",
-    "email": "lukman.oladokun2@gmail.com",
-    "password": "lukman3"
+    "fullName": "Erudite RAI",
+    "email": "eruditerai@gmail.com",
+    "password": "erudite"
 }
 
 ###
-GET http://localhost:3000/users/auth/verify-email/38c2f9c7-c2d6-41b1-80fb-8d90384665a2
+GET http://localhost:3000/users/auth/verify-email/49ed1978-fba8-481b-9bd3-66654004e9b7
 
 ###
+
+# lukman's token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk0M2RkYzcyYTczMjU1YjAwOTJlZTIiLCJlbWFpbCI6Imx1a21hbi5vbGFkb2t1bjJAZ21haWwuY29tIiwiaWF0IjoxNzIwOTkxNjM4fQ.wdGWhg8oNIEe3dnn6SGNEV8t89RjBFR3m4CGJ8LxjUk
+# lukupay's token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk0NDEzMjcyYTczMjU1YjAwOTJlZWIiLCJlbWFpbCI6Imx1a3VwYXlAZ21haWwuY29tIiwiaWF0IjoxNzIwOTkzMTQ0fQ.qfiQVcpBZx5wK0ueNJgmM3SieBzEcCT0Tq6mi5uUEMU
 
 POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "email": "lukman.oladokun2@gmail.com",
-    "password": "lukman3"
+    "email": "lukupay@gmail.com",
+    "password": "lukupay"
+}
+
+###
+
+POST http://localhost:3000/users/forgot-password
+Content-Type: application/json
+
+{
+    "email": "lukuay@gmail.com"
+}
+
+###
+POST http://localhost:3000/users/reset-password
+Content-Type: application/json
+
+{
+    "password": "luk-pay",
+    "passwordResetToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk0NDEzMjcyYTczMjU1YjAwOTJlZWIiLCJ1c2VyVG9rZW4iOiI4OTMxYjc4Yi04ZWFmLTRhY2QtYmQwYS02ODhiMTdjYTExOTUiLCJpYXQiOjE3MjEwODI1NjJ9.SwsAGooMrN9PgP40eeh0GMGewnGBntVLLdOv0kkaiIE"
 }
 
 ###
@@ -42,5 +63,5 @@ GET http://localhost:3000/users
 
 ###
 
-DELETE http://localhost:3000/users/user/66887f933cba576c35c1684b
+DELETE http://localhost:3000/users/user/668b339733c2b42e7fbc1d65
 
